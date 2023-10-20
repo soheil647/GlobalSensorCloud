@@ -1,0 +1,24 @@
+.vehicle-center-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*height: 5vh;*/
+}
+
+.vehicle-custom-select {
+    width: 60%;
+    border-radius: 20px;
+    padding: 2px;
+    margin-left: 50px;
+}
+
+.vehicle-custom-select:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 2px;
+    font-weight: bold;
+    text-align: center;
+}

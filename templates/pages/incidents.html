@@ -1,0 +1,245 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}Incidents{% endblock %}
+{% block breadCrumb1 %}Incidents{% endblock %}
+{% block breadCrumb2 %}Incidents{% endblock %}
+
+{% block stylesheet %}
+    <link href="{% static 'js/DataTables/datatables.css' %}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/incidents.css' %}">
+    {#    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">#}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid py-4">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="card mb-2 p-4 pt-0">
+                    <div class="card-header d-flex justify-content-between pb-4">
+                        <h6 class="d-flex">Incident Data table</h6>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div class="table-responsive p-0 text-center">
+                            <table id="incidents" class="table justify-content-center mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
+                                        Timestamp
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
+                                        Description
+                                    </th>
+                                    {#                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#}
+                                    {#                                        Value 1#}
+                                    {#                                    </th>#}
+                                    {#                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#}
+                                    {#                                        Value 2#}
+                                    {#                                    </th>#}
+                                    {#                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#}
+                                    {#                                        Value 3#}
+                                    {#                                    </th>#}
+                                    {#                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#}
+                                    {#                                        Value 4#}
+                                    {#                                    </th>#}
+                                    {#                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#}
+                                    {#                                        Value 5#}
+                                    {#                                    </th>#}
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
+                                        Detail
+                                    </th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="incident-detail" class="container-fluid py-2" style="display: none">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card pb-5">
+                    <div class="card-header pb-0">
+                        <h6>Incident Detail Data</h6>
+                    </div>
+                    <div class="text-center">
+                        <h4>Vehicle Incident Top View</h4>
+                    </div>
+                    <svg viewBox="-350 0 1800 442" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <g id="trapeziod">
+                            <rect id="cell1" x="207.75" y="67.75" width="321.5" height="123.5" fill="#BCFFA4"
+                                  stroke="black" stroke-width="1.5"></rect>
+                            <rect id="cell2" x="530.75" y="67.75" width="321.5" height="123.5" fill="#BCFFA4"
+                                  stroke="black" stroke-width="1.5"></rect>
+                            <rect id="cell3" x="207.75" y="192.75" width="321.5" height="123.5" fill="#BCFFA4"
+                                  stroke="black" stroke-width="1.5"></rect>
+                            <rect id="cell4" x="530.75" y="192.75" width="321.5" height="123.5" fill="#BCFFA4"
+                                  stroke="black" stroke-width="1.5"></rect>
+                            <rect id="cell5" x="530.75" y="317.75" width="321.5" height="123.5" fill="#BCFFA4"
+                                  stroke="black" stroke-width="1.5"></rect>
+                            <rect id="cell6" x="207.75" y="317.75" width="321.5" height="123.5" fill="#BCFFA4"
+                                  stroke="black" stroke-width="1.5"></rect>
+                            <path id="cell7" d="M141.253 191.25L206.25 69.9868V191.25H141.253Z" fill="#BCFFA4"
+                                  stroke="black" stroke-width="1.5"></path>
+                            <path id="cell8" d="M84.1675 316.25L140.626 192.75H206.25V316.25H84.1675Z" fill="#BCFFA4"
+                                  stroke="black" stroke-width="1.5"></path>
+                            <path id="cell9" d="M206.25 317.75V441.25H38.0807L84.2071 317.75H206.25Z" fill="#BCFFA4"
+                                  stroke="black" stroke-width="1.5"></path>
+                            <path id="cell10" d="M918.752 191.25L853.75 69.0079V191.25H918.752Z" fill="#BCFFA4"
+                                  stroke="black" stroke-width="1.5"></path>
+                            <path id="cell11" d="M975.832 316.25L919.374 192.75H853.75V316.25H975.832Z" fill="#BCFFA4"
+                                  stroke="black" stroke-width="1.5"></path>
+                            <path id="cell12" d="M853.75 317.75V441.25H1022.92L976.519 317.75H853.75Z" fill="#BCFFA4"
+                                  stroke="black" stroke-width="1.5"></path>
+                        </g>
+                    </svg>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <h3 class="mb-0 mr-2" style="margin-right: 30px">Download Video</h3>
+                        <a class="btn btn-primary mt-3" id="video" href="#">Download</a>
+                    </div>
+                </div>
+                <div class="card pb-5 mt-2">
+                    <div class="card-header pb-0">
+                        <h6>Incident Detail Data</h6>
+                    </div>
+                    <div class="row justify-content-between p-2">
+                        <div class="col-4 column">
+                            <div class="d-flex justify-content-between pb-2">
+                                <h5 class="d-flex">Lidar Sensor Data Table</h5>
+                                {#                                <label>#}
+                                {#                                    <select onchange="HandleLdrSelect(this.value)" class="d-flex form-select"#}
+                                {#                                            style="padding: 0.5rem 2rem;">#}
+                                {#                                        <option value="ldr1" selected>Lidar 1</option>#}
+                                {#                                        <option value="ldr2">Lidar 2</option>#}
+                                {#                                        <option value="ldr3">Lidar 3</option>#}
+                                {#                                        <option value="ldr4">Lidar 4</option>#}
+                                {#                                        <option value="ldr5">Lidar 5</option>#}
+                                {#                                        <option value="ldr6">Lidar 6</option>#}
+                                {#                                        <option value="ldr7">Lidar 7</option>#}
+                                {#                                        <option value="ldr8">Lidar 8</option>#}
+                                {#                                        <option value="ldr9">Lidar 9</option>#}
+                                {#                                        <option value="ldr10">Lidar 10</option>#}
+                                {#                                    </select>#}
+                                {#                                </label>#}
+                            </div>
+                            <div class="table-responsive p-0 text-center">
+                                <table id="table-sensor-data-ldr" class="table align-items-center mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Timestamp
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Value 1
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Value 2
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Value 3
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Value 4
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Value 5
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Value 6
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Value 7
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Value 8
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Value 9
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Value 10
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-4 column">
+                            <div class="d-flex justify-content-between pb-4">
+                                <h5 class="d-flex">Visual Camera Data Table</h5>
+                            </div>
+                            <div class="table-responsive p-0 text-center">
+                                <table id='table-sensor-data-vis' class="table align-items-center mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Timestamp
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Status
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Angle
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Type
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-4 column">
+                            <div class="table-responsive p-0 text-center">
+                                <div class="d-flex justify-content-between pb-2">
+                                    <h5 class="d-flex">Time of Flight Camera Table</h5>
+                                    <label>
+                                        <select onchange="HandleToFSelect(this.value)" class="d-flex form-select"
+                                                style="padding: 0.5rem 2rem;">
+                                            <option value="tof" selected>ToF Camera 1</option>
+                                            <option value="tof1">ToF Camera 2</option>
+                                            <option value="tof2">ToF Camera 3</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <table id="table-sensor-data-tof" class="table align-items-center mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Timestamp
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Satus
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Distance
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Angle
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script src="{% static "/js/plugins/jquery-3.6.4.min.js" %}"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script>
+    <script src="{% static 'js/frontend/incidents.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/incidents.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link href="{% static 'js/DataTables/datatables.css' %}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
+    {#    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">#}
+{% endblock %}
+
+{% block title %}Dashboard{% endblock %}
+{% block breadCrumb1 %}Dashboard{% endblock %}
+{% block breadCrumb2 %}Dashboard{% endblock %}
+{% block content %}
+    <!-- End Navbar -->
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-2">
+                    <div class="card-header pb-0">
+                        <h6></h6>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div class="row">
+                            <div class="col px-5">
+                                <h4>Sensor Information</h4>
+                                <div class="px-5">
+                                    <p>Number of Active Sensors: <strong>14</strong></p>
+                                    <p>Number of Disconnected Sensors: <strong>0</strong></p>
+                                </div>
+                            </div>
+                            <div class="col px-5">
+                                <h4>Vehicle Information</h4>
+                                <div class="px-5">
+                                    <p>Current Speed: <strong id="speed"></strong>Km/H</p>
+                                    <p>Current Location: Longitude: <strong id="longitude">0</strong>,
+                                        Latitude: <strong id="latitude"></strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mt-4">
+                            <div class="text-center">
+                                <h4>Vehicle Incident Live View</h4>
+                            </div>
+
+                            <svg viewBox="-350 0 1800 442" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <g id="trapeziod">
+                                    <rect id="cell1" x="207.75" y="67.75" width="321.5" height="123.5" fill="#BCFFA4"
+                                          stroke="black" stroke-width="1.5"></rect>
+                                    <rect id="cell2" x="530.75" y="67.75" width="321.5" height="123.5" fill="#BCFFA4"
+                                          stroke="black" stroke-width="1.5"></rect>
+                                    <rect id="cell3" x="207.75" y="192.75" width="321.5" height="123.5" fill="#BCFFA4"
+                                          stroke="black" stroke-width="1.5"></rect>
+                                    <rect id="cell4" x="530.75" y="192.75" width="321.5" height="123.5" fill="#BCFFA4"
+                                          stroke="black" stroke-width="1.5"></rect>
+                                    <rect id="cell5" x="530.75" y="317.75" width="321.5" height="123.5" fill="#BCFFA4"
+                                          stroke="black" stroke-width="1.5"></rect>
+                                    <rect id="cell6" x="207.75" y="317.75" width="321.5" height="123.5" fill="#BCFFA4"
+                                          stroke="black" stroke-width="1.5"></rect>
+                                    <path id="cell7" d="M141.253 191.25L206.25 69.9868V191.25H141.253Z" fill="#BCFFA4"
+                                          stroke="black" stroke-width="1.5"></path>
+                                    <path id="cell8" d="M84.1675 316.25L140.626 192.75H206.25V316.25H84.1675Z"
+                                          fill="#BCFFA4"
+                                          stroke="black" stroke-width="1.5"></path>
+                                    <path id="cell9" d="M206.25 317.75V441.25H38.0807L84.2071 317.75H206.25Z"
+                                          fill="#BCFFA4"
+                                          stroke="black" stroke-width="1.5"></path>
+                                    <path id="cell10" d="M918.752 191.25L853.75 69.0079V191.25H918.752Z" fill="#BCFFA4"
+                                          stroke="black" stroke-width="1.5"></path>
+                                    <path id="cell11" d="M975.832 316.25L919.374 192.75H853.75V316.25H975.832Z"
+                                          fill="#BCFFA4"
+                                          stroke="black" stroke-width="1.5"></path>
+                                    <path id="cell12" d="M853.75 317.75V441.25H1022.92L976.519 317.75H853.75Z"
+                                          fill="#BCFFA4"
+                                          stroke="black" stroke-width="1.5"></path>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <div class="row justify-content-center mt-5">
+                            <div class="d-flex justify-content-center">
+                                <h4 class="d-flex px-5">Aggregate Data: </h4>
+                                <div class="d-flex">
+                                    <label for="aggregate"></label>
+                                    <select id="aggregate" class="p-2 select-container"
+                                            onchange="HandleAggrChange(this.value)">
+                                        <option value="daily" selected>Daily</option>
+                                        <option value="weekly">Weekly</option>
+                                        <option value="monthly">Monthly</option>
+                                    </select>
+                                </div>
+                            </div>
+{#                            <div class="col">#}
+{#                                <div id="brakes-report" class="p-2">#}
+{#                                    <canvas id="brakes-canvas" height="200px"></canvas>#}
+{#                                </div>#}
+{#                            </div>#}
+                            <div class="col">
+                                <div id="incident-report" class="p-2">
+                                    <canvas id="incidents-canvas" height="150px"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static "/js/plugins/jquery-3.6.4.min.js" %}"></script>
+    <script src="{% static "/js/plugins/chartjs.min.js" %}"></script>
+    <script src="{% static 'js/frontend/dashboard.js' %}"></script>
+{% endblock %}
