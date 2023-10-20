@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="fd1d9bfb-592e-4cb8-818d-fff9dadcff5b" name="GlobalCloud">
+        <fileTransfer rootFolder="/root" accessType="SFTP" host="172.105.102.8" port="22" sshConfigId="b98b0ce9-eb09-40fa-a8a7-a8acb6d990eb" sshConfig="root@172.105.102.8:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

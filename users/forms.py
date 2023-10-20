@@ -38,7 +38,7 @@ class LoginForm(forms.Form):
 
 class SignUpForm(UserCreationForm):
     permission = forms.ChoiceField(
-        choices=UserProfile.PERMISSION_CHOICES,
+        choices=[('', '---------')] + UserProfile.PERMISSION_CHOICES,
         widget=forms.Select(
             attrs={
                 "placeholder": "Permission",
@@ -56,7 +56,7 @@ class SignUpForm(UserCreationForm):
     organization = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Username",
+                "placeholder": "Organization Name",
                 "class": "form-control"
             }
         ))
