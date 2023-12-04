@@ -51,7 +51,7 @@ function handleButtonClick(buttonId) {
         let table = $('#table-sensor-data-ldr').DataTable()
         table.clear()
         table.destroy()
-        drawDataTable('table-sensor-data-ldr', 'ldr1')
+        drawDataTable('table-sensor-data-ldr', 'ldr')
     } else {
         ldr_div.style.display = 'none'
     }

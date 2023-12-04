@@ -27,3 +27,4 @@ wcwidth==0.2.6
 paho-mqtt==1.6.1
 gunicorn==21.2.0
 redis==5.0.0
+django-extensions
