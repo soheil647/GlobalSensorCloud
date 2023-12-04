@@ -59,22 +59,49 @@ function handleButtonClick(buttonId) {
 
 
 drawDataTable = (table_id, sensor_name) => {
-    $('#' + table_id).DataTable({
-        ajax: {
+    if (sensor_name === 'ldr') {
 
-            url: `/api/sensordata/?name=${sensor_name}&vehicleId=${vehicleIdParam}&organization=${organizationParam}`,
-            dataSrc: ''
-        },
-        columnDefs: [{"defaultContent": "-", "targets": "_all"}],
-        columns: [
-            {data: 'timestamp'},
-            {data: 'value1'},
-            {data: 'value2'},
-            {data: 'value3'},
-        ],
-        order: [[0, 'desc']],
-        responsive: true,
-    });
+        $('#' + table_id).DataTable({
+            ajax: {
+
+                url: `/api/sensordata/?name=${sensor_name}&vehicleId=${vehicleIdParam}&organization=${organizationParam}`,
+                dataSrc: ''
+            },
+            columnDefs: [{"defaultContent": "-", "targets": "_all"}],
+            columns: [
+                {data: 'timestamp'},
+                {data: 'value1'},
+                {data: 'value2'},
+                {data: 'value3'},
+                {data: 'value4'},
+                {data: 'value5'},
+                {data: 'value6'},
+                {data: 'value7'},
+                {data: 'value8'},
+                {data: 'value9'},
+                {data: 'value10'},
+            ],
+            order: [[0, 'desc']],
+            responsive: true,
+        });
+    } else {
+        $('#' + table_id).DataTable({
+            ajax: {
+
+                url: `/api/sensordata/?name=${sensor_name}&vehicleId=${vehicleIdParam}&organization=${organizationParam}`,
+                dataSrc: ''
+            },
+            columnDefs: [{"defaultContent": "-", "targets": "_all"}],
+            columns: [
+                {data: 'timestamp'},
+                {data: 'value1'},
+                {data: 'value2'},
+                {data: 'value3'},
+            ],
+            order: [[0, 'desc']],
+            responsive: true,
+        });
+    }
 }
 
 
